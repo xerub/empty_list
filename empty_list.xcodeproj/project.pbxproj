@@ -17,6 +17,10 @@
 		B026DAB420D00999002379D3 /* sploit.c in Sources */ = {isa = PBXBuildFile; fileRef = B026DAB320D00996002379D3 /* sploit.c */; };
 		B028005B20D1452C00A8AA4B /* kmem.c in Sources */ = {isa = PBXBuildFile; fileRef = B028005A20D1452C00A8AA4B /* kmem.c */; };
 		B028005D20D15ED200A8AA4B /* README in Resources */ = {isa = PBXBuildFile; fileRef = B028005C20D15ED200A8AA4B /* README */; };
+		B31960A821CF0DF90024C3A0 /* patchfinder64.c in Sources */ = {isa = PBXBuildFile; fileRef = B31960A421CF0DF80024C3A0 /* patchfinder64.c */; };
+		B31960A921CF0DF90024C3A0 /* unjail.m in Sources */ = {isa = PBXBuildFile; fileRef = B31960A621CF0DF90024C3A0 /* unjail.m */; };
+		B31960AE21CF0E660024C3A0 /* libjb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B31960AD21CF0E660024C3A0 /* libjb.a */; };
+		B3CA276721CF380C0065C480 /* bootstrap.dmg in Resources */ = {isa = PBXBuildFile; fileRef = B3CA276621CF380C0065C480 /* bootstrap.dmg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,13 @@
 		B028005920D1452C00A8AA4B /* kmem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kmem.h; sourceTree = "<group>"; };
 		B028005A20D1452C00A8AA4B /* kmem.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kmem.c; sourceTree = "<group>"; };
 		B028005C20D15ED200A8AA4B /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		B31960A421CF0DF80024C3A0 /* patchfinder64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = patchfinder64.c; sourceTree = "<group>"; };
+		B31960A521CF0DF80024C3A0 /* patchfinder64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
+		B31960A621CF0DF90024C3A0 /* unjail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = unjail.m; sourceTree = "<group>"; };
+		B31960AB21CF0E390024C3A0 /* unjail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unjail.h; sourceTree = "<group>"; };
+		B31960AC21CF0E660024C3A0 /* libjb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libjb.h; sourceTree = "<group>"; };
+		B31960AD21CF0E660024C3A0 /* libjb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjb.a; sourceTree = "<group>"; };
+		B3CA276621CF380C0065C480 /* bootstrap.dmg */ = {isa = PBXFileReference; lastKnownFileType = file; path = bootstrap.dmg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B31960AE21CF0E660024C3A0 /* libjb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +97,13 @@
 				B028005920D1452C00A8AA4B /* kmem.h */,
 				B028005A20D1452C00A8AA4B /* kmem.c */,
 				B028005C20D15ED200A8AA4B /* README */,
+				B31960AD21CF0E660024C3A0 /* libjb.a */,
+				B31960AC21CF0E660024C3A0 /* libjb.h */,
+				B31960AB21CF0E390024C3A0 /* unjail.h */,
+				B31960A421CF0DF80024C3A0 /* patchfinder64.c */,
+				B31960A521CF0DF80024C3A0 /* patchfinder64.h */,
+				B31960A621CF0DF90024C3A0 /* unjail.m */,
+				B3CA276621CF380C0065C480 /* bootstrap.dmg */,
 			);
 			path = empty_list;
 			sourceTree = "<group>";
@@ -146,6 +165,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3CA276721CF380C0065C480 /* bootstrap.dmg in Resources */,
 				B028005D20D15ED200A8AA4B /* README in Resources */,
 				B026DA8120CE9600002379D3 /* LaunchScreen.storyboard in Resources */,
 				B026DA7E20CE9600002379D3 /* Assets.xcassets in Resources */,
@@ -162,9 +182,11 @@
 			files = (
 				B028005B20D1452C00A8AA4B /* kmem.c in Sources */,
 				B026DAB420D00999002379D3 /* sploit.c in Sources */,
+				B31960A821CF0DF90024C3A0 /* patchfinder64.c in Sources */,
 				B026DA8E20CE96E9002379D3 /* offsets.m in Sources */,
 				B026DA7920CE95FE002379D3 /* ViewController.m in Sources */,
 				B026DA8420CE9600002379D3 /* main.m in Sources */,
+				B31960A921CF0DF90024C3A0 /* unjail.m in Sources */,
 				B026DA7620CE95FE002379D3 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +248,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -284,6 +307,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -313,6 +337,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/empty_list",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					IOKit,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.empty-list";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -330,6 +362,14 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/empty_list",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					IOKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.empty-list";
 				PRODUCT_NAME = "$(TARGET_NAME)";

