@@ -11,6 +11,7 @@ int attach(const char *path, char buf[], size_t sz);
 
 /* mount ********************************************************************/
 
+#ifdef __APPLE__
 struct hfs_mount_args {
 	char	*fspec;			/* block special device to mount */
 	uid_t	hfs_uid;		/* uid that owns hfs files (standard HFS only) */
@@ -23,6 +24,7 @@ struct hfs_mount_args {
 	int		journal_flags;          /* flags to pass to journal_open/create */
 	int		journal_disable;        /* don't use journaling (potentially dangerous) */
 } args;
+#endif
 
 /* hashes *******************************************************************/
 

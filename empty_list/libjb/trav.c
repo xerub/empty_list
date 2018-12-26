@@ -202,7 +202,6 @@ print_cdhash(const uint8_t *p, uint64_t codeSignatureOffset, uint64_t codeSignat
     const CS_SuperBlob *super = (CS_SuperBlob *)(p + codeSignatureOffset);
     uint32_t count = SWAP32(super->count);
     const CS_BlobIndex *index;
-    unsigned htype = 0;
     uint8_t cdhash[32];
 
     assert(SWAP32(super->magic) == CSMAGIC_EMBEDDED_SIGNATURE);
@@ -210,10 +209,6 @@ print_cdhash(const uint8_t *p, uint64_t codeSignatureOffset, uint64_t codeSignat
         uint32_t type = SWAP32(index->type);
         if (type == CSSLOT_CODEDIRECTORY || (type >= CSSLOT_ALTERNATE_CODEDIRECTORIES && type < CSSLOT_ALTERNATE_CODEDIRECTORY_LIMIT)) {
             const CS_CodeDirectory *directory = (CS_CodeDirectory *)((uint8_t *)super + SWAP32(index->offset));
-            if (htype >= directory->hashType) {
-                continue;
-            }
-            htype = directory->hashType;
             if (directory->hashType == 1) {
                 assert(directory->hashSize == 20);
 #ifdef __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__
@@ -229,24 +224,24 @@ print_cdhash(const uint8_t *p, uint64_t codeSignatureOffset, uint64_t codeSignat
                 SHA256((const uint8_t *)directory, SWAP32(directory->length), cdhash);
 #endif
             }
-        }
-    }
-    if (htype && check_cdhash(cdhash) == 0) {
-        if (numhash >= maxhash) {
-            hash_t *tmp;
-            maxhash = numhash;
-            if (!maxhash) {
-                maxhash = 8;
+            if (check_cdhash(cdhash) == 0) {
+                if (numhash >= maxhash) {
+                    hash_t *tmp;
+                    maxhash = numhash;
+                    if (!maxhash) {
+                        maxhash = 8;
+                    }
+                    maxhash *= 2;
+                    tmp = realloc(allhash, maxhash * sizeof(hash_t));
+                    if (!tmp) {
+                        return -1;
+                    }
+                    allhash = tmp;
+                }
+                memcpy(allhash + numhash, cdhash, sizeof(hash_t));
+                numhash++;
             }
-            maxhash *= 2;
-            tmp = realloc(allhash, maxhash * sizeof(hash_t));
-            if (!tmp) {
-                return -1;
-            }
-            allhash = tmp;
         }
-        memcpy(allhash + numhash, cdhash, sizeof(hash_t));
-        numhash++;
     }
 
     return 0;
